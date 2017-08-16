@@ -32,7 +32,32 @@
       </div>
 
       <div class="page-content" role="main">
-        TODO
+        <h2>Try it out</h2>
+        <ul>
+            <li>Use your mouse to focus elements of the page. There is no focus outline.</li>
+            <li>Use the tab key to move focus between elements. The focus styles are preserved for keyboard users.</li>
+        </ul>
+
+        <form>
+            <fieldset>
+                    <button>Focus me</button>
+            </fieldset>
+
+            <fieldset>
+                <input type="text" placeholder="Focus this field">
+            </fieldset>
+
+            <fieldset>
+                    <label>
+                        Animal
+                        <select>
+                            <option>Tiger</option>
+                            <option>Bird</option>
+                            <option>Crocodile</option>
+                        </select>
+                    </label>
+            </fieldset>
+        </form>
       </div>
 
       <div class="page-footer" role="contentinfo">
@@ -42,8 +67,58 @@
       </div>
     </div>
 
+    <script>
+        // Hard-coded dependency code. Tooling needs to be set up.
+        (function () {
+            var defaultOutlineStyles = '\n    outline: 1px dotted;\n    outline: 5px auto -webkit-focus-ring-color;\n';
 
-    <script src="main.bundle.js"></script>
+            var defaultNoOutlineStyles = '\noutline: none;\n';
+
+            var defaultFocusSelector = '*:focus';
+
+            var focus = function focus(selector, declarations) {
+            return '\n' + selector + ' {\n  ' + declarations + '\n}';
+            };
+
+            /**
+             * Removes CSS outlines in an accessible manner:
+             * only for clicks, not for keyboard interactions.
+             * @param {string} outlineStyles CSS Declarations to apply when outlines are needed.
+             * @param {string} noOutlineStyles CSS Declarations to apply when outlines are not needed.
+             * @param {string} focusSelector Selector to use when setting the focus styles.
+             */
+            var initAccessibleFocus = function initAccessibleFocus() {
+                var outlineStyles = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultOutlineStyles;
+                var noOutlineStyles = arguments[1];
+                var focusSelector = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : defaultFocusSelector;
+
+                var styles = document.createElement('style');
+                document.querySelector('head').appendChild(styles);
+
+                var outline = focus(focusSelector, outlineStyles);
+                var noOutline = focus(focusSelector, noOutlineStyles);
+
+                styles.innerHTML = noOutline;
+
+                window.addEventListener('mousedown', function () {
+                    styles.innerHTML = noOutline;
+                });
+
+                window.addEventListener('keydown', function (e) {
+                    var isTabKey = e.keyCode === 9;
+
+                    if (isTabKey) {
+                    styles.innerHTML = outline;
+                    }
+                });
+            };
+
+            window.initAccessibleFocus = initAccessibleFocus;
+        }())
+    </script>
+    <script>
+        window.initAccessibleFocus('outline: 5px solid red;');
+    </script>
 
     <script>
         window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
