@@ -1,0 +1,79 @@
+{
+  "name": "accessible-focus-styles",
+  "version": "1.0.0",
+  "description": "Control focus styles in an accessible manner - remove outlines for clicks, keep them for keyboard navigation",
+  "main": "dist/index.js",
+  "module": "es/index.js",
+  "author": "Springload",
+  "license": "MIT",
+  "homepage": "https://springload.github.io/accessible-focus-styles/",
+  "bugs": {
+    "url": "https://github.com/springload/accessible-focus-styles/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/springload/accessible-focus-styles.git"
+  },
+  "keywords": [
+    "YouTube",
+    "Vimeo",
+    "player",
+    "embed",
+    "video"
+  ],
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "targets": {
+            "browsers": [
+              "> 1%",
+              "IE 11"
+            ]
+          },
+          "modules": false
+        }
+      ]
+    ],
+    "env": {
+      "test": {
+        "presets": [
+          [
+            "env",
+            {
+              "targets": {
+                "browsers": [
+                  "> 1%",
+                  "IE 11"
+                ]
+              }
+            }
+          ]
+        ]
+      }
+    }
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/dist/",
+      "/es/"
+    ]
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-env": "^1.6.0",
+    "jest": "^20.0.4"
+  },
+  "dependencies": {},
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:watch:coverage": "jest --watch --coverage",
+    "js": "babel src -d es && BABEL_ENV=test babel src -d dist",
+    "build": "npm run js -s",
+    "dist": "npm run build -s"
+  }
+}
