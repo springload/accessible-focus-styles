@@ -1,0 +1,30 @@
+language: node_js
+cache:
+  directories:
+  - node_modules
+install:
+- npm install
+- npm install -g coveralls
+script:
+- npm run test:coverage
+- npm run dist
+after_success:
+- cat ./coverage/lcov.info | coveralls
+branches:
+  except:
+  - gh-pages
+deploy:
+  provider: pages
+  skip_cleanup: true
+  local_dir: examples
+  github_token: "$GITHUB_TOKEN"
+  on:
+    branch: master
+notifications:
+  email: false
+  slack:
+    rooms:
+      secure: nZ49L8UkR/5jeBHmqoH9nWxMJx6tGhmav22uef6pVh3WP/cpQ9F+2MLtSxMZ6ooL4645kU6+9QM+E+KUUGgO1+DzdQaZf+8qsQQvrOaf1VGs/V5qyzfzNulAlG3i7WNGiCLDjIkc2BcO+Ryz1prl3/GMR3la0sZiKjQsmpRcg9gusAMI57SV++Y8qSxxnpap3crcTNuP/B6qFqc1KXotMqjtNIbxTZsDN574WCEopG9ZXBUAiyOf1nKN0sFchJXrsDIDsJp1XAWsoIC8P+VBtKMH8GiHxz90tcuiROYVG6nUvdBcivtFNZCghG4t+TwJ2yG7+TQLtrIa57D/EiI8adlJJt7+tiNk6p8GJlvhcaceO6t7xFykQ5zN7gZopyvQd7MW3qrcXfxZ7vlsEoD9IWPJFkZevTlS1ajL+ShdbIPvejtMMeyk7oEt/MiE5rBZfsxy25iH4CYMq4EQbYeEX7K+HVJSXgT7Ap8leHsG9HsZDYCiAcQla2a33QixMvxITMWSELlDVtm5QcBqspzNF+Xv4ueaF+6ipa3UOkvi8/Ju2dPrQX/wp1M9Te68LuuiHuvenUznYwFb3yjAO2LB6bcJEnrl/lDBTCL6he3R0ZaGvi4vARkH/KyzbesLq+RNIchvyuD+nSeJhBtipWsm7g08YlesHbRUn4hM9tPGuCk=
+env:
+  global:
+    secure: TI6Mx752ywZX2vR4bLlN0wYNND+W8y8JX7ct/HRoaBWDXy8LxmPFG4Xu91ttJzE82nsAPOjI3uyAcQTi82CsfRj6hP/hTUHqrslMhY+zzziTGpepCPbF4QGiTceKpE/1GlbBIMPgYnyS8fPIe2rdEMDNH7nOv0fY6I9RXqj5sNekaXqW2UZGoRIVNU7ohd0iogV1mqwwEI/1hadD8xjWZoNkYzd5o2CucfmqxcfR7yGFS9AXBQ+nWxFBNpAZWeDqNPByJTtFHrgtfukQWRPiDiex+dtzMTbnW3zf5C3Fk+/kjt9wQU+ttDUpQ7GKyubEkJtU2lsvstEuFeXPZ9IieDwvKZqTN5Lz8Hl6Wdl+6cyg4iXukXMOwoIUpADA6soMEIzulOmGfK3eJLehRio4GUNF6BIncqLyqWLynM8zspOmGb0YOLZ2IHf+6fWncTTQYv5I2ujNmeus+Wj5FUoPECfwCB2zDU/MIGwiOYz6mWQKLVS/TKOPo6Widrj7iwncI//iIyoCmJgiXwYDKEyiCxwFrSUomWiZGRdJS56QIpugUGvp8gm6yf8lPD6wJTvSB5D6Fxne6dtyqq8VoxjAQcjdxH/qHnwFc/Odn9BeGLYNe/euC02LwaGVnk+dpgmWLmmX0xUts8bsp6mMIGeLiM4+bT/RPuXMPXen6P8Hgmo=
