@@ -25,8 +25,8 @@ const initAccessibleFocus = (outlineStyles = defaultOutlineStyles, noOutlineStyl
   const styles = document.createElement('style');
   document.querySelector('head').appendChild(styles);
 
-  const outline = focus(outlineStyles);
-  const noOutline = focus(noOutlineStyles);
+  const outline = focus(focusSelector, outlineStyles);
+  const noOutline = focus(focusSelector, noOutlineStyles);
 
   styles.innerHTML = noOutline;
 
