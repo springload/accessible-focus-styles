@@ -89,7 +89,7 @@
              */
             var initAccessibleFocus = function initAccessibleFocus() {
                 var outlineStyles = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultOutlineStyles;
-                var noOutlineStyles = arguments[1];
+                var noOutlineStyles = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : defaultNoOutlineStyles;
                 var focusSelector = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : defaultFocusSelector;
 
                 var styles = document.createElement('style');

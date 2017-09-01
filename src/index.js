@@ -21,7 +21,7 @@ ${selector} {
  * @param {string} noOutlineStyles CSS Declarations to apply when outlines are not needed.
  * @param {string} focusSelector Selector to use when setting the focus styles.
  */
-const initAccessibleFocus = (outlineStyles = defaultOutlineStyles, noOutlineStyles, focusSelector = defaultFocusSelector) => {
+const initAccessibleFocus = (outlineStyles = defaultOutlineStyles, noOutlineStyles = defaultNoOutlineStyles, focusSelector = defaultFocusSelector) => {
   const styles = document.createElement('style');
   document.querySelector('head').appendChild(styles);
 
