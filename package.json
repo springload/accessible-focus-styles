@@ -1,6 +1,6 @@
 {
   "name": "accessible-focus-styles",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Control focus styles in an accessible manner - remove outlines for clicks, keep them for keyboard navigation",
   "main": "dist/index.js",
   "module": "es/index.js",
